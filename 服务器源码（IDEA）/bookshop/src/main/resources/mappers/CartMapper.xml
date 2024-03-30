@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.class166room223.bookshop.dao.CartMapper" >
+  <resultMap id="BaseResultMap" type="com.class166room223.bookshop.model.Cart" >
+    <id column="cart_id" property="cartId" jdbcType="INTEGER" />
+    <result column="cart_user_id" property="cartUserId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cart_id, cart_user_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cart
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByUser" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from cart
+    where cart_user_id = #{userId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cart
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.class166room223.bookshop.model.Cart" >
+    insert into cart (cart_id, cart_user_id)
+    values (#{cartId,jdbcType=INTEGER}, #{cartUserId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.class166room223.bookshop.model.Cart" >
+    insert into cart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cartId != null" >
+        cart_id,
+      </if>
+      <if test="cartUserId != null" >
+        cart_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cartId != null" >
+        #{cartId,jdbcType=INTEGER},
+      </if>
+      <if test="cartUserId != null" >
+        #{cartUserId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.class166room223.bookshop.model.Cart" >
+    update cart
+    <set >
+      <if test="cartUserId != null" >
+        cart_user_id = #{cartUserId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.class166room223.bookshop.model.Cart" >
+    update cart
+    set cart_user_id = #{cartUserId,jdbcType=INTEGER}
+    where cart_id = #{cartId,jdbcType=INTEGER}
+  </update>
+</mapper>

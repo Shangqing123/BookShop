@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.class166room223.bookshop.dao.OrderShowMapper" >
+  <resultMap id="BaseResultMap" type="com.class166room223.bookshop.model.OrderShow" >
+    <id column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_user_id" property="orderUserId" jdbcType="VARCHAR" />
+    <result column="order_phone" property="orderPhone" jdbcType="VARCHAR" />
+    <result column="order_name" property="orderName" jdbcType="VARCHAR" />
+    <result column="order_address" property="orderAddress" jdbcType="VARCHAR" />
+    <result column="order_type" property="orderType" jdbcType="VARCHAR" />
+    <result column="book_name" property="bookName" jdbcType="VARCHAR" />
+    <result column="book_image" property="bookImage" jdbcType="VARCHAR" />
+    <result column="book_price" property="bookPrice" jdbcType="VARCHAR" />
+    <result column="book_description" property="bookDescription" jdbcType="VARCHAR" />
+    <result column="orderitem_book_number" property="orderitemBookNumber" jdbcType="INTEGER" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    order_user_id, order_phone, order_name, order_address,order_type,book_name,book_image,orderitem_book_number,order_id,book_price,book_description
+  </sql>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from orders join orderitem on(order_id=orderitem_order_id)
+        join book on (book_id=orderitem_book_id)
+        where order_user_id=#{userId,jdbcType=INTEGER}
+  </select>
+
+</mapper>

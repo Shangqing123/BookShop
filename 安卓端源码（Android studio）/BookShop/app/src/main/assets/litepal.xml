@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--在litepal.xml中添加来创建数据库-->
+<litepal>
+    <dbname value="bookShop"/>
+
+    <version value="9"/>
+
+    <list>
+        <mapping class="com.example.bookshop.model.UserGain"/>
+    </list>
+</litepal>  

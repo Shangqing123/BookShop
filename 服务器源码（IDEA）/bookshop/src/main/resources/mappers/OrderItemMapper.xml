@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.class166room223.bookshop.dao.OrderItemMapper" >
+  <resultMap id="BaseResultMap" type="com.class166room223.bookshop.model.OrderItem" >
+    <id column="orderitem_id" property="orderitemId" jdbcType="INTEGER" />
+    <result column="orderitem_order_id" property="orderitemOrderId" jdbcType="VARCHAR" />
+    <result column="orderitem_book_id" property="orderitemBookId" jdbcType="INTEGER" />
+    <result column="orderitem_book_number" property="orderitemBookNumber" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    orderitem_id, orderitem_order_id, orderitem_book_id, orderitem_book_number
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orderitem
+    where orderitem_id = #{orderitemId,jdbcType=INTEGER}
+  </select>
+
+  <select id="listAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from orderitem
+    where orderitem_order_id = #{orderId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orderitem
+    where orderitem_id = #{orderitemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.class166room223.bookshop.model.OrderItem" >
+    insert into orderitem (orderitem_id, orderitem_order_id, orderitem_book_id, 
+      orderitem_book_number)
+    values (#{orderitemId,jdbcType=INTEGER}, #{orderitemOrderId,jdbcType=VARCHAR}, #{orderitemBookId,jdbcType=INTEGER}, 
+      #{orderitemBookNumber,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.class166room223.bookshop.model.OrderItem" >
+    insert into orderitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderitemId != null" >
+        orderitem_id,
+      </if>
+      <if test="orderitemOrderId != null" >
+        orderitem_order_id,
+      </if>
+      <if test="orderitemBookId != null" >
+        orderitem_book_id,
+      </if>
+      <if test="orderitemBookNumber != null" >
+        orderitem_book_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderitemId != null" >
+        #{orderitemId,jdbcType=INTEGER},
+      </if>
+      <if test="orderitemOrderId != null" >
+        #{orderitemOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderitemBookId != null" >
+        #{orderitemBookId,jdbcType=INTEGER},
+      </if>
+      <if test="orderitemBookNumber != null" >
+        #{orderitemBookNumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.class166room223.bookshop.model.OrderItem" >
+    update orderitem
+    <set >
+      <if test="orderitemOrderId != null" >
+        orderitem_order_id = #{orderitemOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderitemBookId != null" >
+        orderitem_book_id = #{orderitemBookId,jdbcType=INTEGER},
+      </if>
+      <if test="orderitemBookNumber != null" >
+        orderitem_book_number = #{orderitemBookNumber,jdbcType=INTEGER},
+      </if>
+    </set>
+    where orderitem_id = #{orderitemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.class166room223.bookshop.model.OrderItem" >
+    update orderitem
+    set orderitem_order_id = #{orderitemOrderId,jdbcType=VARCHAR},
+      orderitem_book_id = #{orderitemBookId,jdbcType=INTEGER},
+      orderitem_book_number = #{orderitemBookNumber,jdbcType=INTEGER}
+    where orderitem_id = #{orderitemId,jdbcType=INTEGER}
+  </update>
+</mapper>

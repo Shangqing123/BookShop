@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BookShop</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="url">http://47.100.121.231:8080</string>
+    <string name="title_activity_main3">Main3Activity</string>
+</resources>

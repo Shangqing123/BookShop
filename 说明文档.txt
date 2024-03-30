@@ -1,0 +1,10 @@
+﻿1.安卓端使用Java语言，在Android studio上面开发。
+2.服务端使用Java语言，基于SpringBoot框架，在IDEA上面开发。
+3.数据库使用MySql，数据库名bookshop，默认登陆用户名：root，密码：sun123
+4.软件版本：
+	Android Studio：2019
+	gradle：5.6.4
+	SDK：24.4.1
+	IDEA：2018.3.6 x64
+	MySQL：5.5.6
+	maven：3.5.4

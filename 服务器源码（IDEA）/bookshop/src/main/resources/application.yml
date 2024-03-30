@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    #   数据源基本配置
+    username: root
+    password: sun123
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/bookshop?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+    type: com.alibaba.druid.pool.DruidDataSource
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false
+
+mybatis:
+  mapper-locations: classpath:/mappers/*.xml
+  type-aliases-package: com.class166room223.bookshop.model
+  configuration:
+    map-underscore-to-camel-case: true
+    #在控制台打印出sql语句
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+out:
+  resource:
+    path: file:/root/imageupload/

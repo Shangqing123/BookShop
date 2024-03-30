@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/blue"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="书籍详情"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+        <RelativeLayout
+            android:layout_width="55dp"
+            android:onClick="back"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:background="@mipmap/back"
+                android:layout_centerInParent="true"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/book_img"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginRight="45dp"
+
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_height="35dp">
+
+        <TextView
+            android:id="@+id/et_price"
+            android:layout_width="200dp"
+            android:textSize="30sp"
+            android:paddingLeft="20dp"
+            android:text="$ 64.0"
+            android:textColor="@color/red_dark"
+            android:layout_height="match_parent" />
+        <TextView
+            android:id="@+id/et_sales"
+            android:layout_width="match_parent"
+            android:textSize="20sp"
+            android:layout_marginLeft="55dp"
+            android:paddingLeft="20dp"
+            android:text="销量：20"
+            android:gravity="bottom"
+            android:textColor="@color/light_black"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_height="25dp">
+        <TextView
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:text="汪曾祺经典小说(大作记事+鸡鸭名家）"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_height="60dp">
+
+        <TextView
+            android:id="@+id/et_salesDetail"
+            android:layout_width="match_parent"
+            android:textColorHint="@color/gray"
+            android:textSize="15sp"
+            android:paddingLeft="20dp"
+            android:text="如丰子恺般通透，人生海海，在平淡的生活中，发现世间的妙趣与美好。生活须有光有影，有晴有雨，有情有心，滋味都含在这里了。"
+
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_height="30dp">
+        <TextView
+            android:id="@+id/et_auth"
+            android:layout_width="100dp"
+            android:paddingLeft="20dp"
+            android:text="汪曾祺"
+            android:textSize="15sp"
+
+            android:textColor="@color/lights_black"
+            android:layout_height="match_parent" />
+        <TextView
+            android:layout_width="match_parent"
+            android:textSize="15sp"
+            android:text="中华出版社"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:background="@color/blue"
+            android:layout_margin="4dp"
+            android:textColor="@color/white"
+            android:onClick="addCart"
+            android:textSize="15sp"
+            android:text="加入购物车" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.class166room223.bookshop.dao.CartItemMapper" >
+  <resultMap id="BaseResultMap" type="com.class166room223.bookshop.model.CartItem" >
+    <id column="cartitem_id" property="cartitemId" jdbcType="INTEGER" />
+    <result column="cartitem_cart_id" property="cartitemCartId" jdbcType="INTEGER" />
+    <result column="cartitem_book_id" property="cartitemBookId" jdbcType="INTEGER" />
+    <result column="cartitem_book_number" property="cartitemBookNumber" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cartitem_id, cartitem_cart_id, cartitem_book_id, cartitem_book_number
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cartitem
+    where cartitem_id = #{cartitemId,jdbcType=INTEGER}
+  </select>
+
+  <select id="listAll" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from cartitem
+    where cartitem_cart_id = #{cartId}
+  </select>
+
+  <select id="selectByCartBook" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from cartitem
+    where cartitem_cart_id = #{cartId} and cartitem_book_id = #{bookId}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cartitem
+    where cartitem_id = #{cartitemId,jdbcType=INTEGER}
+  </delete>
+
+  <delete id="deleteByBookIdCartId" parameterType="java.lang.Integer" >
+    delete from cartitem
+    where cartitem_cart_id = #{cartId} and cartitem_book_id = #{bookId}
+  </delete>
+
+  <delete id="deleteByCartId" parameterType="java.lang.Integer" >
+    delete from cartitem
+    where cartitem_cart_id = #{cartId}
+  </delete>
+
+  <insert id="insert" parameterType="com.class166room223.bookshop.model.CartItem" >
+    insert into cartitem (cartitem_id, cartitem_cart_id, cartitem_book_id, 
+      cartitem_book_number)
+    values (#{cartitemId,jdbcType=INTEGER}, #{cartitemCartId,jdbcType=INTEGER}, #{cartitemBookId,jdbcType=INTEGER}, 
+      #{cartitemBookNumber,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.class166room223.bookshop.model.CartItem" >
+    insert into cartitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cartitemId != null" >
+        cartitem_id,
+      </if>
+      <if test="cartitemCartId != null" >
+        cartitem_cart_id,
+      </if>
+      <if test="cartitemBookId != null" >
+        cartitem_book_id,
+      </if>
+      <if test="cartitemBookNumber != null" >
+        cartitem_book_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cartitemId != null" >
+        #{cartitemId,jdbcType=INTEGER},
+      </if>
+      <if test="cartitemCartId != null" >
+        #{cartitemCartId,jdbcType=INTEGER},
+      </if>
+      <if test="cartitemBookId != null" >
+        #{cartitemBookId,jdbcType=INTEGER},
+      </if>
+      <if test="cartitemBookNumber != null" >
+        #{cartitemBookNumber,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.class166room223.bookshop.model.CartItem" >
+    update cartitem
+    <set >
+      <if test="cartitemCartId != null" >
+        cartitem_cart_id = #{cartitemCartId,jdbcType=INTEGER},
+      </if>
+      <if test="cartitemBookId != null" >
+        cartitem_book_id = #{cartitemBookId,jdbcType=INTEGER},
+      </if>
+      <if test="cartitemBookNumber != null" >
+        cartitem_book_number = #{cartitemBookNumber,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cartitem_id = #{cartitemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.class166room223.bookshop.model.CartItem" >
+    update cartitem
+    set cartitem_cart_id = #{cartitemCartId,jdbcType=INTEGER},
+      cartitem_book_id = #{cartitemBookId,jdbcType=INTEGER},
+      cartitem_book_number = #{cartitemBookNumber,jdbcType=INTEGER}
+    where cartitem_id = #{cartitemId,jdbcType=INTEGER}
+  </update>
+
+  <update id="descByBookIdCartId" parameterType="Integer" >
+    update cartitem
+    set
+      cartitem_book_number = cartitem_book_number-1
+    where cartitem_id = #{cartitemId}
+  </update>
+
+  <update id="ascByBookIdCartId" parameterType="Integer" >
+    update cartitem
+    set
+      cartitem_book_number = cartitem_book_number+1
+    where cartitem_id = #{cartitemId}
+  </update>
+
+  <update id="ascByBookIdCartIdone" parameterType="Integer" >
+    update cartitem
+    set
+      cartitem_book_number = cartitem_book_number+1
+    where cartitem_cart_id = #{cartId} and cartitem_book_id = #{bookId}
+  </update>
+</mapper>
